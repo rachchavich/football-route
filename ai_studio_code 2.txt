@@ -1,0 +1,23 @@
+const stops = [
+  { time: "06:00", icon: "⏰", title: "Wake up & stretch" },
+  { time: "07:30", icon: "🏫", title: "School starts" },
+  { time: "12:00", icon: "🍚", title: "Lunch & rest" },
+  { time: "15:30", icon: "⚽", title: "Football training" },
+  { time: "18:30", icon: "📖", title: "Homework" },
+  { time: "21:30", icon: "😴", title: "Sleep" },
+];
+
+const route = document.getElementById("route");
+stops.forEach(s => {
+  route.innerHTML += `
+    <div class="stop">
+      <span class="time">${s.time}</span>
+      <label><input type="checkbox"> ${s.icon} ${s.title}</label>
+    </div>`;
+});
+
+route.addEventListener("change", () => {
+  const done = document.querySelectorAll("input:checked").length;
+  document.getElementById("progress").textContent =
+    `Done: ${done}/${stops.length}`;
+});
